@@ -282,9 +282,16 @@ function makeStackTraceLong(error, promise) {
         error.stack &&
         error.stack.indexOf(STACK_JUMP_SEPARATOR) === -1
     ) {
-        error.stack = filterStackString(error.stack) +
-            "\n" + STACK_JUMP_SEPARATOR + "\n" +
-            filterStackString(promise.stack);
+        var stacks = [];
+        for (var p = promise; !!p; p = p.source) {
+            if (p.stack) {
+                stacks.unshift(p.stack);
+            }
+        }
+        stacks.unshift(error.stack);
+
+        var concatedStacks = stacks.join("\n" + STACK_JUMP_SEPARATOR + "\n");
+        error.stack = filterStackString(concatedStacks);
     }
 }
 
@@ -447,6 +454,8 @@ function defer() {
             return;
         }
         value = resolve(resolvedValue);
+        promise.source = value;
+
         array_reduce(pending, function (undefined, pending) {
             nextTick(function () {
                 value.promiseDispatch.apply(value, pending);
