@@ -64,6 +64,8 @@ rest and spread arguments.
 
 ## Getting Started
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/reconbot/q.svg)](https://greenkeeper.io/)
+
 The Q module can be loaded as:
 
 -   A ``<script>`` tag (creating a ``Q`` global variable): ~3 KB minified and
