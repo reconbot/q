@@ -46,9 +46,9 @@
   "devDependencies": {
     "jshint": ">=1.1.0",
     "cover": "*",
-    "jasmine-node": "1.2.2",
+    "jasmine-node": "1.14.5",
     "opener": "*",
-    "promises-aplus-tests": "1.x"
+    "promises-aplus-tests": "^2.1.2"
   },
   "scripts": {
     "test": "jasmine-node spec && promises-aplus-tests spec/aplus-adapter",
